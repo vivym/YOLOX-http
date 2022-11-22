@@ -1,3 +1,7 @@
+/uploaded_images/*
+
+!.gitkeep
+
 ### Linux ###
 *~
 
