@@ -317,8 +317,8 @@ def main(exp, args):
 async def save_upload_file(upload_file: UploadFile) -> str:
     file_path = f"./uploaded_images/{uuid4()}{Path(upload_file.filename).suffix}"
     async with aiofiles.open(file_path, "wb") as f:
-        while content := await upload_file.read(4 * 1024):
-            await f.write(content)
+        data = await upload_file.read()
+        await f.write(data)
 
     return file_path
 
