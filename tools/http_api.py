@@ -15,6 +15,7 @@ import cv2
 import torch
 import uvicorn
 from fastapi import FastAPI, UploadFile
+from starlette.responses import FileResponse
 
 from yolox.data.data_augment import ValTransform
 from yolox.data.datasets import COCO_CLASSES
@@ -321,6 +322,11 @@ async def save_upload_file(upload_file: UploadFile) -> str:
         await f.write(data)
 
     return file_path
+
+
+@app.get("/")
+async def home():
+    return FileResponse("upload.html")
 
 
 @app.post("/detect")
